@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.manage.club.mapper.ClubMapper">
+
+    <!-- 社团模糊查询 -->
+    <select id="selectByKeyword" resultType="com.manage.club.entity.Club">
+        SELECT * FROM club
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND name LIKE CONCAT('%',#{keyword},'%')
+                OR desc LIKE CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>

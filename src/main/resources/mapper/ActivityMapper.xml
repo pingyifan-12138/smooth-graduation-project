@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manage.club.mapper.ActivityMapper">
+
+    <!-- 根据活动类型筛选 + 模糊查询（和接口方法名完全一样：selectByType） -->
+    <select id="selectByType" resultType="com.manage.club.entity.Activity">
+        SELECT * FROM activity
+        <where>
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>
